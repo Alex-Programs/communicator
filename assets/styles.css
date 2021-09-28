@@ -1,0 +1,26 @@
+body, html {
+    background-color: black;
+    color: white;
+
+    font-family: 'JetBrains Mono', monospace;
+
+    max-width: 800px;
+
+    margin: auto;
+}
+
+.table-entries {
+    margin: auto;
+    min-width: 400px;
+    max-width: 100%;
+
+    border-collapse: collapse;
+}
+
+th, table {
+    border: 1px solid white;
+}
+
+th {
+    padding: 5px;
+}
