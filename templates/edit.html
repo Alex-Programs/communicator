@@ -9,14 +9,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <script src="assets/edit.js"></script>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+          rel="stylesheet">
 </head>
 <body>
+<a href="/main">Back to Main</a>
+
 <table class="table-entries" id="entries">
     <thead>
     <tr>
         <th>Text</th>
+        <th>Colour</th>
         <th>Remove</th>
     </tr>
     </thead>
@@ -24,10 +28,27 @@
     {% for entry in entries %}
     <tr data-uid="{{ entry['uid'] }}">
         <th>{{entry["text"]}}</th>
-        <th><button data-uid="{{ entry['uid'] }}" onclick="remove_entry(this.getAttribute('data-uid'))">Remove</button></th>
+        <th style="color: {{ entry['color'] }}">{{entry["color"]}}</th>
+        <th>
+            <button data-uid="{{ entry['uid'] }}" onclick="remove_entry(this.getAttribute('data-uid'))">Remove</button>
+        </th>
     </tr>
     {% endfor %}
     </tbody>
 </table>
+<div class="newentry-wrapper">
+    <form class="newentry" action="/api/new" method="post" target="hiddenFrame" onsubmit="reload_after_delay()">
+        <h3>New Phrase</h3>
+        <label for="text">Text</label><br>
+        <input type="text" id="text" name="text" required><br>
+
+        <label for="color">Colour</label><br>
+        <input type="color" id="color" name="color" value="#ffffff" required><br>
+
+        <input type="submit" value="Submit" style="width: 100px;">
+    </form>
+</div>
+
+<iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
 </body>
 </html>

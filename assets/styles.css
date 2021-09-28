@@ -24,3 +24,12 @@ th, table {
 th {
     padding: 5px;
 }
+
+.newentry {
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: aqua;
+}
