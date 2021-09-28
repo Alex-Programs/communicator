@@ -4,9 +4,12 @@ body, html {
 
     font-family: 'JetBrains Mono', monospace;
 
-    max-width: 800px;
-
     margin: auto;
+
+    height: 100%;
+
+    transition: background-color 0.2s;
+    transition: color 0.2s;
 }
 
 .table-entries {
@@ -32,4 +35,18 @@ th {
 
 a {
     color: aqua;
+}
+
+.user-show {
+    display: flex;
+    flex-direction: column;
+}
+
+.word {
+    text-align: center;
+    font-size: 40px;
+}
+
+.user-show {
+    text-align: center;
 }

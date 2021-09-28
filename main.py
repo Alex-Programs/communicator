@@ -5,6 +5,8 @@ from waitress import serve
 from database import entries
 from secrets import token_urlsafe
 
+from bson.json_util import dumps
+
 app = Flask(__name__)
 
 
@@ -43,6 +45,14 @@ def delete():
 
     return "OK", 200
 
+@app.route("/main")
+def main():
+    return render_template("main.html")
+
+@app.route("/api/entries")
+def send_entries():
+    print(str(dumps(entries.find({}))))
+    return dumps(entries.find({}))
 
 # serve(app, host="0.0.0.0", port=9010)
 app.run(host="0.0.0.0", port=9010, debug=True)
