@@ -54,5 +54,5 @@ def send_entries():
     print(str(dumps(entries.find({}))))
     return dumps(entries.find({}))
 
-# serve(app, host="0.0.0.0", port=9010)
-app.run(host="0.0.0.0", port=9010, debug=True)
+serve(app, host="0.0.0.0", port=9010)
+# app.run(host="0.0.0.0", port=9010, debug=True)
