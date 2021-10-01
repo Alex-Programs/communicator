@@ -46,7 +46,7 @@ function set_ui(entry) {
 
     document.getElementById("body").style.backgroundColor = entry.color
     document.getElementById("body").style.color = invertColor(entry.color)
-    
+
     say(entry.text)
 }
 
@@ -69,6 +69,13 @@ function next_entry() {
     set_ui(get_entry())
 }
 
+function input_detected() {
+    if (window.last_change + parseInt(localStorage.getItem("min_interval")) < new Date().getTime()) {
+        window.last_change = new Date().getTime()
+        next_entry()
+    }
+}
+
 function setup_proj(data) {
     window.entries = data
     window.index = 0
@@ -79,12 +86,13 @@ function setup_proj(data) {
 
     document.getElementById("delay-inp").value = localStorage.getItem("min_interval") / 1000
 
-    document.addEventListener("keyup", function(event) {
-    if (window.last_change + parseInt(localStorage.getItem("min_interval")) < new Date().getTime()) {
-        window.last_change = new Date().getTime()
-        next_entry()
-    }
-});
+    document.addEventListener("keyup", function (event) {
+        input_detected()
+    });
+
+    document.addEventListener("touchstart", function (event) {
+        input_detected()
+    })
 
     set_ui(get_entry())
 }
